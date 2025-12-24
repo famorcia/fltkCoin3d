@@ -1,4 +1,4 @@
-# wxCoin3D
+# fltkCoin3D
 Porting on fltk of Coin3D (a.k.a Open Inventor) examples
 
 ## Compilation

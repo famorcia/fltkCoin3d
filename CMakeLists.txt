@@ -1,4 +1,4 @@
-# wxCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
+# fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
 # Copyright (C) 2022  Fabrizio Morciano
 
 # This library is free software; you can redistribute it and/or
@@ -45,7 +45,7 @@ FetchContent_MakeAvailable(FLTK)
 message(STATUS "Download and build FLTK - done.")
 
 
-#include( ${COIN3D_INCLUDE_DIRS})
+include_directories( ${COIN3D_INCLUDE_DIRS})
 
 add_subdirectory(minimal)
 #add_subdirectory(glutDuck)
