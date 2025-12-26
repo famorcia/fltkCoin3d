@@ -1,6 +1,6 @@
 /*
- * fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
- * Copyright (C) 2022  Fabrizio Morciano
+ * fltkCoin3D Porting on fltk of Coin3D (a.k.a Open Inventor) examples
+ * Copyright (C) 2025  Fabrizio Morciano
 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,7 +18,7 @@
  * USA
  */
 
-#include "Fltk3DCanvas.h"
+#include "Fltk_Coin3D_Window.h"
 
 #include <ostream>
 #include <GL/gl.h>
@@ -54,14 +54,14 @@
 //     Called 24x per second to redraw the widget
 //
 static void Timer_CB(void *userdata) {
-    auto pb = static_cast<Fltk3DCanvas *>(userdata);
+    auto pb = static_cast<Fltk_Coin3D_Window *>(userdata);
     pb->redraw();
     Fl::repeat_timeout(1.0/24.0, Timer_CB, userdata);
 }
 
 
 #define COIN 1
-Fltk3DCanvas::Fltk3DCanvas(int X, int Y, int W, int H, const char *L )
+Fltk_Coin3D_Window::Fltk_Coin3D_Window(int X, int Y, int W, int H, const char *L )
     : Fl_Gl_Window(X, Y, W, H, L) {
 
     Fl::add_timeout(1.0/24.0, Timer_CB, (void*)this);       // 24fps timer
@@ -101,11 +101,11 @@ Fltk3DCanvas::Fltk3DCanvas(int X, int Y, int W, int H, const char *L )
 
 }
 
-void  Fltk3DCanvas::InitEmptyScene() {
+void  Fltk_Coin3D_Window::InitEmptyScene() {
 
 }
 
-void Fltk3DCanvas::InitGL() {
+void Fltk_Coin3D_Window::InitGL() {
     if(!isGLInitialized) {
         glEnable(GL_DEPTH_TEST);
         isGLInitialized = true;
@@ -117,7 +117,7 @@ void Fltk3DCanvas::InitGL() {
     sceneManager->setBackgroundColor( backColor);
 }
 
-void Fltk3DCanvas::draw() {
+void Fltk_Coin3D_Window::draw() {
     if (!valid()) {
 #ifdef COIN
         InitGL();
@@ -162,7 +162,7 @@ void Fltk3DCanvas::draw() {
 
 
 int
-Fltk3DCanvas::initSceneGraph(const std::string& fileName)
+Fltk_Coin3D_Window::initSceneGraph(const std::string& fileName)
 {
     if(root)
         root->unref();

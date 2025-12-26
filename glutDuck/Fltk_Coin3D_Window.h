@@ -1,6 +1,6 @@
 /*
- * fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
- * Copyright (C) 2022  Fabrizio Morciano
+ * fltkCoin3D Porting on fltk of Coin3D (a.k.a Open Inventor) examples
+ * Copyright (C) 2025  Fabrizio Morciano
 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,7 @@
 #include <string>
 
 // Creiamo una classe che estende Fl_Gl_Window
-class Fltk3DCanvas : public Fl_Gl_Window {
+class Fltk_Coin3D_Window : public Fl_Gl_Window {
     void InitGL();
 
     bool isGLInitialized;
@@ -38,7 +38,7 @@ class Fltk3DCanvas : public Fl_Gl_Window {
     SoPerspectiveCamera *myCamera;
 
 public:
-    Fltk3DCanvas(int X, int Y, int W, int H, const char* L=nullptr);
+    Fltk_Coin3D_Window(int X, int Y, int W, int H, const char* L=nullptr);
 
     void draw() override ;
 };

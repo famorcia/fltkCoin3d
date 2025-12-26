@@ -1,5 +1,5 @@
-# fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
-# Copyright (C) 2022  Fabrizio Morciano
+# fltkCoin3D Porting on fltk of Coin3D (a.k.a Open Inventor) examples
+# Copyright (C) 2025  Fabrizio Morciano
 
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public

@@ -1,6 +1,6 @@
 /*
- * fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
- * Copyright (C) 2022  Fabrizio Morciano
+ * fltkCoin3D Porting on fltk of Coin3D (a.k.a Open Inventor) examples
+ * Copyright (C) 2025  Fabrizio Morciano
 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,27 +24,20 @@
 #include <FL/Fl_Gl_Window.H>
 #include <Inventor/nodes/SoRotationXYZ.h>
 
-// Creiamo una classe che estende Fl_Gl_Window
-class Fltk3DCanvas : public Fl_Gl_Window {
+
+class Fltk_Coin3D_Window : public Fl_Gl_Window {
 
     void initGL();
     void globeScene();
     bool isGLInitialized;
-
-
-    SoSeparator *root;
-
-    short W;
-    short H;
-
-
-public:
-    Fltk3DCanvas(int X, int Y, int W, int H, const char* L=nullptr);
-    ~Fltk3DCanvas() override;
-
     float angle;
     SoRotationXYZ *globeSpin;
+    SoSeparator *root;
 
+public:
+    Fltk_Coin3D_Window(int X, int Y, int W, int H, const char* L=nullptr);
+    ~Fltk_Coin3D_Window() override;
+    void update_angle();
     void draw() override ;
 };
 

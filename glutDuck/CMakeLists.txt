@@ -1,5 +1,5 @@
-# fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
-# Copyright (C) 2022  Fabrizio Morciano
+# fltkCoin3D Porting on fltk of Coin3D (a.k.a Open Inventor) examples
+# Copyright (C) 2025  Fabrizio Morciano
 
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 # USA
 
-ADD_EXECUTABLE(minimal Fltk3DCanvas.cpp main.cpp)
+ADD_EXECUTABLE(minimal Fltk_Coin3D_Window.cpp main.cpp)
 
 TARGET_LINK_LIBRARIES(minimal PRIVATE
         OpenGL::GL

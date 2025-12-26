@@ -1,6 +1,6 @@
 /*
- * fltkCoin3D Porting on wxWidgets of Coin3D (a.k.a Open Inventor) examples
- * Copyright (C) 2022  Fabrizio Morciano
+ * fltkCoin3D Porting on fltk of Coin3D (a.k.a Open Inventor) examples
+ * Copyright (C) 2025  Fabrizio Morciano
 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,7 +18,7 @@
  * USA
  */
 
-#include "Fltk3DCanvas.h"
+#include "Fltk_Coin3D_Window.h"
 
 #include <GL/gl.h>
 
@@ -43,10 +43,10 @@
 //     Called 24x per second to redraw the widget
 //
 static void Timer_CB(void *userdata) {
-    auto pb = static_cast<Fltk3DCanvas *>(userdata);
-    pb->angle += 0.01;
-    if (pb->globeSpin)
-        pb->globeSpin->angle = pb->angle;
+    auto pb = static_cast<Fltk_Coin3D_Window *>(userdata);
+    if (!pb)
+        return;
+    pb->update_angle();
     // Very important, Coin need to process internal timer, this need to be performed in the canvas periodically
     SoDB::getSensorManager()->processTimerQueue();
     pb->redraw();
@@ -54,7 +54,7 @@ static void Timer_CB(void *userdata) {
 }
 
 
-Fltk3DCanvas::Fltk3DCanvas(int X, int Y, int W, int H, const char *L)
+Fltk_Coin3D_Window::Fltk_Coin3D_Window(int X, int Y, int W, int H, const char *L)
     : Fl_Gl_Window(X, Y, W, H, L) {
     Fl::add_timeout(1.0 / 24.0, Timer_CB, (void *) this); // 24fps timer
 
@@ -68,12 +68,12 @@ Fltk3DCanvas::Fltk3DCanvas(int X, int Y, int W, int H, const char *L)
     SoDB::init();
 }
 
-Fltk3DCanvas::~Fltk3DCanvas() {
+Fltk_Coin3D_Window::~Fltk_Coin3D_Window() {
     if (root)
         root->unref();
 }
 
-void Fltk3DCanvas::initGL() {
+void Fltk_Coin3D_Window::initGL() {
     if (!isGLInitialized) {
         glEnable(GL_DEPTH_TEST);
         isGLInitialized = true;
@@ -81,7 +81,7 @@ void Fltk3DCanvas::initGL() {
     }
 }
 
-void Fltk3DCanvas::globeScene() {
+void Fltk_Coin3D_Window::globeScene() {
     root = new SoSeparator;
     root->ref();
 
@@ -118,20 +118,25 @@ void Fltk3DCanvas::globeScene() {
     myTexture2->filename = "globe.rgb";
 }
 
+void Fltk_Coin3D_Window::update_angle() {
+    // could be called by timer before initialization is done
+    if (globeSpin) {
+        angle += 0.01;
+        globeSpin->angle = angle;
+    }
+}
 
-void Fltk3DCanvas::draw() {
+void Fltk_Coin3D_Window::draw() {
     if (!valid()) {
         initGL();
     }
 
-    glClearColor( 0.3f, 0.4f, 0.6f, 1.0f );
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    SbViewportRegion myViewport( w(), h());
+    glClearColor(0.3f, 0.4f, 0.6f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    SbViewportRegion myViewport(w(), h());
     SoGLRenderAction myRenderAction(myViewport);
     myRenderAction.apply(root);
 
     glFlush();
     this->swap_buffers();
 }
-
-
