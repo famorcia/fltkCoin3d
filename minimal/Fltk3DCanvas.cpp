@@ -24,7 +24,6 @@
 
 #include <Inventor/actions/SoGLRenderAction.h>
 #include <Inventor/engines/SoElapsedTime.h>
-#include <Inventor/nodes/SoCylinder.h>
 #include <Inventor/nodes/SoEventCallback.h>
 #include <Inventor/nodes/SoPerspectiveCamera.h>
 #include <Inventor/nodes/SoSeparator.h>
@@ -39,8 +38,6 @@
 
 #include <Inventor/nodes/SoDirectionalLight.h>
 #include <Inventor/nodes/SoRotationXYZ.h>
-
-#include <iostream>
 
 // 24 FPS TIMER CALLBACK
 //     Called 24x per second to redraw the widget
