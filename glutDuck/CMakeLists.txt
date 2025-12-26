@@ -16,39 +16,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 # USA
 
-cmake_minimum_required(VERSION 3.15)
-project(fltkCoin3D)
+ADD_EXECUTABLE(minimal Fltk3DCanvas.cpp main.cpp)
 
-include(FindPkgConfig)
-include(FindOpenGL)
-
-if(NOT OPENGL_FOUND)
-    message(FATAL_ERROR "GL is required")
-endif()
-if(NOT OPENGL_GLU_FOUND)
-    message(FATAL_ERROR "GLU is required")
-endif()
-
-
-pkg_check_modules (COIN3D Coin REQUIRED)
-
-include(FetchContent)
-
-FetchContent_Declare(FLTK
-        GIT_REPOSITORY  https://github.com/fltk/fltk
-        GIT_TAG         release-1.4.4
-        GIT_SHALLOW     TRUE
-)
-
-message(STATUS "Download and build FLTK if necessary, please wait...")
-FetchContent_MakeAvailable(FLTK)
-message(STATUS "Download and build FLTK - done.")
-
-
-include_directories( ${COIN3D_INCLUDE_DIRS})
-
-add_subdirectory(minimal)
-#add_subdirectory(glutDuck)
-#add_subdirectory(fltkIvViewer)
-
+TARGET_LINK_LIBRARIES(minimal PRIVATE
+        OpenGL::GL
+        OpenGL::GLU
+        ${COIN3D_LINK_LIBRARIES}
+        fltk::fltk fltk::gl)
 

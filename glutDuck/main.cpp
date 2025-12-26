@@ -18,36 +18,15 @@
  * USA
  */
 
-#ifndef COIN3D_CANVAS_H
-#define COIN3D_CANVAS_H
+#include <FL/Fl.H>
 
-#include <FL/Fl_Gl_Window.H>
-#include <Inventor/nodes/SoRotationXYZ.h>
+#include "Fltk3DCanvas.h"
 
-// Creiamo una classe che estende Fl_Gl_Window
-class Fltk3DCanvas : public Fl_Gl_Window {
+int main(int argc, char** argv) {
+    Fl_Window win(640, 480, "FLTK + Coin3D Example");
+    Fltk3DCanvas glwin(10, 10, 620, 460);
+    win.end();
+    win.show(argc, argv);
+    return Fl::run();
+}
 
-    void initGL();
-    void globeScene();
-    bool isGLInitialized;
-
-
-    SoSeparator *root;
-
-    short W;
-    short H;
-
-
-public:
-    Fltk3DCanvas(int X, int Y, int W, int H, const char* L=nullptr);
-    ~Fltk3DCanvas() override;
-
-    float angle;
-    SoRotationXYZ *globeSpin;
-
-    void draw() override ;
-};
-
-
-
-#endif //COIN3D_CANVAS_H

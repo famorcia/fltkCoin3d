@@ -22,28 +22,23 @@
 #define COIN3D_CANVAS_H
 
 #include <FL/Fl_Gl_Window.H>
-#include <Inventor/nodes/SoRotationXYZ.h>
+
+#include <Inventor/nodes/SoPerspectiveCamera.h>
+#include <Inventor/SoSceneManager.h>
+
+#include <string>
 
 // Creiamo una classe che estende Fl_Gl_Window
 class Fltk3DCanvas : public Fl_Gl_Window {
+    void InitGL();
 
-    void initGL();
-    void globeScene();
     bool isGLInitialized;
-
-
+    SoSceneManager* sceneManager;
     SoSeparator *root;
-
-    short W;
-    short H;
-
+    SoPerspectiveCamera *myCamera;
 
 public:
     Fltk3DCanvas(int X, int Y, int W, int H, const char* L=nullptr);
-    ~Fltk3DCanvas() override;
-
-    float angle;
-    SoRotationXYZ *globeSpin;
 
     void draw() override ;
 };
