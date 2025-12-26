@@ -16,9 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 # USA
 
-ADD_EXECUTABLE(minimal Fltk_Coin3D_Window.cpp main.cpp)
+ADD_EXECUTABLE(Duck_Coin3D_Window Duck_Coin3D_Window.cpp main.cpp)
 
-TARGET_LINK_LIBRARIES(minimal PRIVATE
+TARGET_LINK_LIBRARIES(Duck_Coin3D_Window PRIVATE
         OpenGL::GL
         OpenGL::GLU
         ${COIN3D_LINK_LIBRARIES}

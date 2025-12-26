@@ -29,7 +29,6 @@ if(NOT OPENGL_GLU_FOUND)
     message(FATAL_ERROR "GLU is required")
 endif()
 
-
 pkg_check_modules (COIN3D Coin REQUIRED)
 
 include(FetchContent)
@@ -48,7 +47,7 @@ message(STATUS "Download and build FLTK - done.")
 include_directories( ${COIN3D_INCLUDE_DIRS})
 
 add_subdirectory(minimal)
-#add_subdirectory(glutDuck)
+add_subdirectory(Duck_Coin3D_Window)
 #add_subdirectory(fltkIvViewer)
 
 

@@ -18,31 +18,15 @@
  * USA
  */
 
-#ifndef COIN3D_CANVAS_H
-#define COIN3D_CANVAS_H
+#include <FL/Fl.H>
 
-#include <FL/Fl_Gl_Window.H>
+#include "Duck_Coin3D_Window.h"
 
-#include <Inventor/nodes/SoPerspectiveCamera.h>
-#include <Inventor/SoSceneManager.h>
+int main(int argc, char** argv) {
+    Fl_Window win(640, 480, "FLTK + Coin3D Example");
+    Duck_Coin3D_Window glwin(10, 10, 620, 460);
+    win.end();
+    win.show(argc, argv);
+    return Fl::run();
+}
 
-#include <string>
-
-// Creiamo una classe che estende Fl_Gl_Window
-class Fltk_Coin3D_Window : public Fl_Gl_Window {
-    void InitGL();
-
-    bool isGLInitialized;
-    SoSceneManager* sceneManager;
-    SoSeparator *root;
-    SoPerspectiveCamera *myCamera;
-
-public:
-    Fltk_Coin3D_Window(int X, int Y, int W, int H, const char* L=nullptr);
-
-    void draw() override ;
-};
-
-
-
-#endif //COIN3D_CANVAS_H
