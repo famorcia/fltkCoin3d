@@ -35,19 +35,8 @@ if(NOT OPENGL_GLU_FOUND)
 endif()
 
 pkg_check_modules (COIN3D Coin REQUIRED)
-
-include(FetchContent)
-
-FetchContent_Declare(FLTK
-        GIT_REPOSITORY  https://github.com/fltk/fltk
-        GIT_TAG         release-1.4.4
-        GIT_SHALLOW     TRUE
-)
-
-message(STATUS "Download and build FLTK if necessary, please wait...")
-FetchContent_MakeAvailable(FLTK)
-message(STATUS "Download and build FLTK - done.")
-
+pkg_check_modules(EGL REQUIRED egl)
+find_package(FLTK REQUIRED)
 
 include_directories( ${COIN3D_INCLUDE_DIRS})
 

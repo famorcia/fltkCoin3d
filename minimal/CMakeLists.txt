@@ -27,5 +27,7 @@ TARGET_LINK_LIBRARIES(minimal PRIVATE
         OpenGL::GL
         OpenGL::GLU
         ${COIN3D_LINK_LIBRARIES}
-        fltk::fltk fltk::gl)
+        ${FLTK_LIBRARIES}
+        ${EGL_LIBRARIES}
+)
 

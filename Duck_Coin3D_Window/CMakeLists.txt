@@ -27,5 +27,5 @@ TARGET_LINK_LIBRARIES(Duck_Coin3D_Window PRIVATE
         OpenGL::GL
         OpenGL::GLU
         ${COIN3D_LINK_LIBRARIES}
-        fltk::fltk fltk::gl)
+        ${FLTK_LIBRARIES})
 
