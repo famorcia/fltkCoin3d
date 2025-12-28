@@ -1,4 +1,7 @@
 name: Continuous Integration Build
+permissions:
+  contents: read
+  pull-requests: read
 
 on:
   workflow_dispatch:  # Allow manual triggers
@@ -26,14 +29,14 @@ jobs:
           mkdir coin_build_dir
           cd coin_build_dir
           cmake ../coin_source_dir -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=cmake_install_dir -DCMAKE_CXX_STANDARD=11
-          cmake --build . --target install
+          cmake --build -j 4 . --target install
       - name: Download and install fltk
         run: |
           git clone --depth 1 --branch release-1.4.4 https://github.com/fltk/fltk fltk_source_dir
           mkdir fltk_build_dir
           cd fltk_build_dir
           cmake ../fltk_source_dir -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=cmake_install_dir -DCMAKE_CXX_STANDARD=11
-          cmake --build . --target install
+          cmake --build . -j 4 --target install
       - name: Create build directory and run CMake
         run: |
           cmake -S . -B cmake_build_dir -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=cmake_install_dir
